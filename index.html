@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,25 +36,25 @@
             cursor: crosshair;
         }
 
-            body::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-                opacity: var(--grain-opacity);
-                pointer-events: none;
-                z-index: 9999;
-                mix-blend-mode: overlay;
-            }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            opacity: var(--grain-opacity);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+        }
 
-            body::after {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
-                pointer-events: none;
-                z-index: 9998;
-            }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+            pointer-events: none;
+            z-index: 9998;
+        }
 
         nav {
             position: fixed;
@@ -67,13 +68,13 @@
             padding: 1.5rem 3rem;
         }
 
-            nav::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(to bottom, rgba(26,22,18,0.9), transparent);
-                pointer-events: none;
-            }
+        nav::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(26, 22, 18, 0.9), transparent);
+            pointer-events: none;
+        }
 
         .nav-logo {
             font-family: 'Noto Serif SC', serif;
@@ -92,18 +93,18 @@
             z-index: 1;
         }
 
-            .nav-links a {
-                font-size: 11px;
-                letter-spacing: 0.2em;
-                text-transform: uppercase;
-                color: var(--fog);
-                text-decoration: none;
-                transition: color 0.3s;
-            }
+        .nav-links a {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--fog);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
 
-                .nav-links a:hover {
-                    color: var(--cream);
-                }
+        .nav-links a:hover {
+            color: var(--cream);
+        }
 
         #hero {
             height: 100vh;
@@ -118,19 +119,19 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 70% 40%, rgba(139,94,82,0.15) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(200,184,154,0.08) 0%, transparent 50%), var(--ink);
+            background: radial-gradient(ellipse at 70% 40%, rgba(139, 94, 82, 0.15) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(200, 184, 154, 0.08) 0%, transparent 50%), var(--ink);
         }
 
-            .hero-bg::after {
-                content: '';
-                position: absolute;
-                top: -10%;
-                right: -5%;
-                width: 40%;
-                height: 60%;
-                background: radial-gradient(ellipse, rgba(139,94,82,0.12) 0%, transparent 70%);
-                filter: blur(40px);
-            }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 40%;
+            height: 60%;
+            background: radial-gradient(ellipse, rgba(139, 94, 82, 0.12) 0%, transparent 70%);
+            filter: blur(40px);
+        }
 
         .hero-eyebrow {
             font-size: 10px;
@@ -153,10 +154,10 @@
             letter-spacing: -0.02em;
         }
 
-            .hero-name span {
-                color: var(--dirt);
-                font-style: italic;
-            }
+        .hero-name span {
+            color: var(--dirt);
+            font-style: italic;
+        }
 
         .hero-sub {
             font-size: 12px;
@@ -180,7 +181,9 @@
         }
 
         @keyframes fadeUpDown {
-            0%,100% {
+
+            0%,
+            100% {
                 opacity: 0.4;
                 transform: translateY(0)
             }
@@ -195,10 +198,10 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%) rotate(-20deg);
+            transform: translate(-50%, -50%) rotate(-20deg);
             font-family: 'Noto Serif SC', serif;
-            font-size: clamp(6rem,18vw,16rem);
-            color: rgba(200,184,154,0.025);
+            font-size: clamp(6rem, 18vw, 16rem);
+            color: rgba(200, 184, 154, 0.025);
             white-space: nowrap;
             pointer-events: none;
             z-index: 0;
@@ -222,17 +225,17 @@
             gap: 1rem;
         }
 
-            .section-label::after {
-                content: '';
-                flex: 1;
-                max-width: 60px;
-                height: 0.5px;
-                background: var(--rust);
-                opacity: 0.5;
-            }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            max-width: 60px;
+            height: 0.5px;
+            background: var(--rust);
+            opacity: 0.5;
+        }
 
         #works {
-            background: rgba(255,255,255,0.015);
+            background: rgba(255, 255, 255, 0.015);
         }
 
         .works-grid {
@@ -247,29 +250,29 @@
             aspect-ratio: 1;
             overflow: hidden;
             cursor: pointer;
-            background: rgba(200,184,154,0.05);
-            border: 0.5px solid rgba(200,184,154,0.1);
+            background: rgba(200, 184, 154, 0.05);
+            border: 0.5px solid rgba(200, 184, 154, 0.1);
         }
 
-            .work-card::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(to bottom, transparent 40%, rgba(26,22,18,0.95) 100%);
-                z-index: 1;
-            }
+        .work-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(26, 22, 18, 0.95) 100%);
+            z-index: 1;
+        }
 
-            .work-card::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 30%;
-                background: linear-gradient(to bottom, rgba(139,94,82,0.08), transparent);
-                z-index: 2;
-                pointer-events: none;
-            }
+        .work-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to bottom, rgba(139, 94, 82, 0.08), transparent);
+            z-index: 2;
+            pointer-events: none;
+        }
 
         .work-cover-placeholder {
             width: 100%;
@@ -277,10 +280,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(139,94,82,0.2), rgba(200,184,154,0.08));
+            background: linear-gradient(135deg, rgba(139, 94, 82, 0.2), rgba(200, 184, 154, 0.08));
             font-family: 'Noto Serif SC', serif;
             font-size: 3rem;
-            color: rgba(200,184,154,0.3);
+            color: rgba(200, 184, 154, 0.3);
             transition: transform 0.6s ease;
         }
 
@@ -289,7 +292,7 @@
         }
 
         .work-card.active .work-cover-placeholder {
-            background: linear-gradient(135deg, rgba(139,94,82,0.35), rgba(200,184,154,0.15));
+            background: linear-gradient(135deg, rgba(139, 94, 82, 0.35), rgba(200, 184, 154, 0.15));
         }
 
         .work-info {
@@ -327,23 +330,23 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%) scale(0);
+            transform: translate(-50%, -50%) scale(0);
             z-index: 4;
             width: 52px;
             height: 52px;
-            border: 1px solid rgba(240,234,216,0.6);
+            border: 1px solid rgba(240, 234, 216, 0.6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.3s ease;
-            background: rgba(26,22,18,0.5);
+            background: rgba(26, 22, 18, 0.5);
             backdrop-filter: blur(4px);
             cursor: pointer;
         }
 
         .work-card:hover .play-btn {
-            transform: translate(-50%,-50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
         }
 
         .play-btn svg {
@@ -367,21 +370,21 @@
         .about-photo-placeholder {
             width: 100%;
             aspect-ratio: 3/4;
-            background: linear-gradient(160deg, rgba(139,94,82,0.25), rgba(26,22,18,0.8));
+            background: linear-gradient(160deg, rgba(139, 94, 82, 0.25), rgba(26, 22, 18, 0.8));
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Noto Serif SC', serif;
             font-size: 5rem;
-            color: rgba(200,184,154,0.2);
-            border: 0.5px solid rgba(200,184,154,0.1);
+            color: rgba(200, 184, 154, 0.2);
+            border: 0.5px solid rgba(200, 184, 154, 0.1);
         }
 
         .about-photo-wrap::after {
             content: '';
             position: absolute;
             inset: 0;
-            box-shadow: inset 0 0 60px rgba(26,22,18,0.5);
+            box-shadow: inset 0 0 60px rgba(26, 22, 18, 0.5);
             pointer-events: none;
         }
 
@@ -391,7 +394,7 @@
             right: 1.5rem;
             font-size: 10px;
             letter-spacing: 0.2em;
-            color: rgba(200,184,154,0.5);
+            color: rgba(200, 184, 154, 0.5);
         }
 
         .about-text h2 {
@@ -406,7 +409,7 @@
         .about-text p {
             font-size: 14px;
             line-height: 1.9;
-            color: rgba(200,184,154,0.75);
+            color: rgba(200, 184, 154, 0.75);
             margin-bottom: 1.2rem;
             letter-spacing: 0.02em;
         }
@@ -423,12 +426,12 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             padding: 0.4rem 1rem;
-            border: 0.5px solid rgba(200,184,154,0.2);
+            border: 0.5px solid rgba(200, 184, 154, 0.2);
             color: var(--fog);
         }
 
         #picks {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .picks-intro {
@@ -451,20 +454,20 @@
             transition: opacity 0.3s;
         }
 
-            .pick-item:hover {
-                opacity: 0.8;
-            }
+        .pick-item:hover {
+            opacity: 0.8;
+        }
 
         .pick-cover-placeholder {
             width: 100%;
             aspect-ratio: 1;
-            background: linear-gradient(135deg, rgba(139,94,82,0.15), rgba(200,184,154,0.05));
-            border: 0.5px solid rgba(200,184,154,0.1);
+            background: linear-gradient(135deg, rgba(139, 94, 82, 0.15), rgba(200, 184, 154, 0.05));
+            border: 0.5px solid rgba(200, 184, 154, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            color: rgba(200,184,154,0.15);
+            color: rgba(200, 184, 154, 0.15);
             font-family: 'Noto Serif SC', serif;
         }
 
@@ -494,7 +497,7 @@
 
         .contact-title {
             font-family: 'Noto Serif SC', serif;
-            font-size: clamp(2rem,5vw,4rem);
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 300;
             color: var(--cream);
             margin-bottom: 1.5rem;
@@ -513,15 +516,15 @@
             letter-spacing: 0.15em;
             color: var(--dirt);
             text-decoration: none;
-            border-bottom: 0.5px solid rgba(200,184,154,0.3);
+            border-bottom: 0.5px solid rgba(200, 184, 154, 0.3);
             padding-bottom: 2px;
             transition: color 0.3s, border-color 0.3s;
         }
 
-            .contact-email:hover {
-                color: var(--cream);
-                border-color: var(--cream);
-            }
+        .contact-email:hover {
+            color: var(--cream);
+            border-color: var(--cream);
+        }
 
         .social-links {
             display: flex;
@@ -530,18 +533,18 @@
             margin-top: 3rem;
         }
 
-            .social-links a {
-                font-size: 10px;
-                letter-spacing: 0.3em;
-                text-transform: uppercase;
-                color: var(--fog);
-                text-decoration: none;
-                transition: color 0.3s;
-            }
+        .social-links a {
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--fog);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
 
-                .social-links a:hover {
-                    color: var(--cream);
-                }
+        .social-links a:hover {
+            color: var(--cream);
+        }
 
         #player {
             position: fixed;
@@ -554,21 +557,21 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            background: rgba(18,14,10,0.92);
+            background: rgba(18, 14, 10, 0.92);
             backdrop-filter: blur(12px);
-            border-top: 0.5px solid rgba(200,184,154,0.1);
+            border-top: 0.5px solid rgba(200, 184, 154, 0.1);
         }
 
         .player-cover-placeholder {
             width: 42px;
             height: 42px;
-            background: rgba(200,184,154,0.08);
-            border: 0.5px solid rgba(200,184,154,0.15);
+            background: rgba(200, 184, 154, 0.08);
+            border: 0.5px solid rgba(200, 184, 154, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            color: rgba(200,184,154,0.3);
+            color: rgba(200, 184, 154, 0.3);
             font-family: 'Noto Serif SC', serif;
             flex-shrink: 0;
         }
@@ -612,20 +615,20 @@
             align-items: center;
         }
 
-            .ctrl-btn:hover {
-                color: var(--cream);
-            }
+        .ctrl-btn:hover {
+            color: var(--cream);
+        }
 
-            .ctrl-btn svg {
-                width: 16px;
-                height: 16px;
-                fill: currentColor;
-            }
+        .ctrl-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
 
         .play-pause-btn {
             width: 36px;
             height: 36px;
-            border: 0.5px solid rgba(200,184,154,0.3);
+            border: 0.5px solid rgba(200, 184, 154, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -636,15 +639,15 @@
             transition: border-color 0.2s;
         }
 
-            .play-pause-btn:hover {
-                border-color: var(--cream);
-            }
+        .play-pause-btn:hover {
+            border-color: var(--cream);
+        }
 
-            .play-pause-btn svg {
-                width: 14px;
-                height: 14px;
-                fill: currentColor;
-            }
+        .play-pause-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
 
         .player-progress {
             flex: 2;
@@ -665,7 +668,7 @@
         .progress-bar {
             flex: 1;
             height: 2px;
-            background: rgba(200,184,154,0.15);
+            background: rgba(200, 184, 154, 0.15);
             cursor: pointer;
             position: relative;
         }
@@ -677,16 +680,16 @@
             position: relative;
         }
 
-            .progress-fill::after {
-                content: '';
-                position: absolute;
-                right: -3px;
-                top: -3px;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: var(--dirt);
-            }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: -3px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--dirt);
+        }
 
         .volume-wrap {
             display: flex;
@@ -699,26 +702,26 @@
             width: 60px;
             height: 2px;
             appearance: none;
-            background: rgba(200,184,154,0.15);
+            background: rgba(200, 184, 154, 0.15);
             cursor: pointer;
             outline: none;
         }
 
-            .volume-slider::-webkit-slider-thumb {
-                appearance: none;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: var(--dirt);
-            }
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--dirt);
+        }
 
         footer {
             text-align: center;
             padding: 1.5rem;
             font-size: 10px;
             letter-spacing: 0.2em;
-            color: rgba(122,112,96,0.4);
-            border-top: 0.5px solid rgba(200,184,154,0.06);
+            color: rgba(122, 112, 96, 0.4);
+            border-top: 0.5px solid rgba(200, 184, 154, 0.06);
             margin-bottom: 70px;
         }
 
@@ -726,33 +729,35 @@
             position: relative;
         }
 
-            .chroma::before, .chroma::after {
-                content: attr(data-text);
-                position: absolute;
-                top: 0;
-                left: 0;
-                pointer-events: none;
-            }
+        .chroma::before,
+        .chroma::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
 
-            .chroma::before {
-                color: rgba(255,80,80,0.25);
-                transform: translateX(-1.5px);
-            }
+        .chroma::before {
+            color: rgba(255, 80, 80, 0.25);
+            transform: translateX(-1.5px);
+        }
 
-            .chroma::after {
-                color: rgba(80,200,255,0.2);
-                transform: translateX(1.5px);
-            }
+        .chroma::after {
+            color: rgba(80, 200, 255, 0.2);
+            transform: translateX(1.5px);
+        }
 
         .vignette {
             position: fixed;
             inset: 0;
-            background: radial-gradient(ellipse at center, transparent 50%, rgba(10,8,6,0.55) 100%);
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(10, 8, 6, 0.55) 100%);
             pointer-events: none;
             z-index: 9997;
         }
     </style>
 </head>
+
 <body>
     <div class="vignette"></div>
     <div class="watermark" aria-hidden="true">梦</div>
@@ -825,14 +830,22 @@
         </div>
         <div class="player-controls">
             <button class="ctrl-btn" id="prevBtn" aria-label="上一曲">
-                <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z" /></svg>
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z" />
+                </svg>
             </button>
             <button class="play-pause-btn" id="playPauseBtn" aria-label="播放/暂停">
-                <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6zm8-14v14h4V5z" /></svg>
+                <svg id="playIcon" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+                <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none">
+                    <path d="M6 19h4V5H6zm8-14v14h4V5z" />
+                </svg>
             </button>
             <button class="ctrl-btn" id="nextBtn" aria-label="下一曲">
-                <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6zm8.5-6v6h2V6h-2z" /></svg>
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 18l8.5-6L6 6zm8.5-6v6h2V6h-2z" />
+                </svg>
             </button>
         </div>
         <div class="player-progress">
@@ -843,43 +856,46 @@
             <span class="progress-time" id="totalTime">0:00</span>
         </div>
         <div class="volume-wrap">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(122,112,96,0.7)"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" /></svg>
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="音量">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(122,112,96,0.7)">
+                <path d="M3 9v6h4l5 5V4L7 9zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+            </svg>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.8"
+                aria-label="音量">
         </div>
         <audio id="audioEl" preload="metadata"></audio>
     </div>
 
     <script>
-const works = [
-  { title: "A Foggy Day（改编）",              year: "2026.5", tag: "Jazz",       emoji: "🎷", src: "MySongWorks/Jazz/A Foggy Day L9 version-01(260515).mp3" },
-  { title: "Singing in the Afternoon",         year: "2026.5", tag: "Jazz",       emoji: "☀️", src: "MySongWorks/Jazz/12课作业-01(260507).mp3" },
-  { title: "一起摇摆（改编）",                  year: "2026.5", tag: "Funk",       emoji: "🎸", src: "MySongWorks/一起摇摆（改编） v2.41.mp3" },
-  { title: "未拆封的情书",                      year: "2026",   tag: "Ballad",     emoji: "💌", src: "MySongWorks/未拆封的情书Demo v2.52.mp3" },
-  { title: "遥远的声音",                        year: "2026.5", tag: "Bossa Nova", emoji: "🌿", src: "MySongWorks/Jazz/bossa260403 v1.2.mp3" },
-  { title: "End Of The Journey（候鸟）",        year: "2026",   tag: "Instrumental",emoji: "🕊️", src: "MySongWorks/End of the Journey.mp3" },
-  { title: "R&B（未填词）",                     year: "2025",   tag: "R&B",        emoji: "🌃", src: "MySongWorks/RNB v4.3.mp3" },
-  { title: "J-Pop",                            year: "2025",   tag: "J-Pop",      emoji: "🌸", src: "MySongWorks/Jrock 9.1.mp3" },
-  { title: "On The Sunny Side Of The Street",  year: "2025",   tag: "Jazz",       emoji: "🎺", src: "MySongWorks/街道阳面jazz 3.1.mp3" },
-  { title: "Lofi Guitar",                      year: "2022",   tag: "Lofi",       emoji: "🌙", src: "MySongWorks/LoFi HipHop.mp3" },
-  { title: "午后的短憩",                        year: "2024",   tag: "Bossa Nova", emoji: "🍵", src: "MySongWorks/Jazz/一小段Bossa.mp3" },
-];
+        const works = [
+            { title: "A Foggy Day（改编）", year: "2026.5", tag: "Jazz", emoji: "🎷", src: "MySongWorks/Jazz/A Foggy Day L9 version-01(260515).mp3" },
+            { title: "Singing in the Afternoon", year: "2026.5", tag: "Jazz", emoji: "☀️", src: "MySongWorks/Jazz/12课作业-01(260507).mp3" },
+            { title: "一起摇摆（改编）", year: "2026.5", tag: "Funk", emoji: "🎸", src: "MySongWorks/一起摇摆（改编） v2.41.mp3" },
+            { title: "未拆封的情书", year: "2026", tag: "Ballad", emoji: "💌", src: "MySongWorks/未拆封的情书Demo v2.52.mp3" },
+            { title: "遥远的声音", year: "2026.5", tag: "Bossa Nova", emoji: "🌿", src: "MySongWorks/Jazz/bossa260403 v1.2.mp3" },
+            { title: "End Of The Journey（候鸟）", year: "2026", tag: "Instrumental", emoji: "🕊️", src: "MySongWorks/End of the Journey.mp3" },
+            { title: "R&B（未填词）", year: "2025", tag: "R&B", emoji: "🌃", src: "MySongWorks/RNB v4.3.mp3" },
+            { title: "J-Pop", year: "2025", tag: "J-Pop", emoji: "🌸", src: "MySongWorks/Jrock 9.1.mp3" },
+            { title: "On The Sunny Side Of The Street", year: "2025", tag: "Jazz", emoji: "🎺", src: "MySongWorks/Jazz/街道阳面jazz 3.1.mp3" },
+            { title: "Lofi Guitar", year: "2022", tag: "Lofi", emoji: "🌙", src: "MySongWorks/LoFi HipHop.flac" },
+            { title: "午后的短憩", year: "2024", tag: "Bossa Nova", emoji: "🍵", src: "MySongWorks/Jazz/一小段Bossa.wav" },
+        ];
 
-const picks = [
-  { artist: "ヨルシカ",              album: "幻燈" },
-  { artist: "ヨルシカ",              album: "だから僕は音楽を辞めた" },
-  { artist: "ヨルシカ",              album: "負け犬にアンコールはいらない" },
-  { artist: "n-buna",               album: "花と水飴、最終電車" },
-  { artist: "ずっと真夜中でいいのに。", album: "潜潜話" },
-  { artist: "ずっと真夜中でいいのに。", album: "ぐされ" },
-  { artist: "鎖那",                  album: "(un) sentimental spica" },
-  { artist: "Porter Robinson",      album: "Nurture" },
-  { artist: "Madeon",               album: "Adventure (Deluxe)" },
-];
+        const picks = [
+            { artist: "ヨルシカ", album: "幻燈" },
+            { artist: "ヨルシカ", album: "だから僕は音楽を辞めた" },
+            { artist: "ヨルシカ", album: "負け犬にアンコールはいらない" },
+            { artist: "n-buna", album: "花と水飴、最終電車" },
+            { artist: "ずっと真夜中でいいのに。", album: "潜潜話" },
+            { artist: "ずっと真夜中でいいのに。", album: "ぐされ" },
+            { artist: "鎖那", album: "(un) sentimental spica" },
+            { artist: "Porter Robinson", album: "Nurture" },
+            { artist: "Madeon", album: "Adventure (Deluxe)" },
+        ];
 
-// render works
-const wg = document.getElementById('worksGrid');
-works.forEach((w, i) => {
-  wg.innerHTML += `
+        // render works
+        const wg = document.getElementById('worksGrid');
+        works.forEach((w, i) => {
+            wg.innerHTML += `
     <div class="work-card" data-idx="${i}" role="button" tabindex="0" aria-label="播放 ${w.title}">
       <div class="work-cover-placeholder" aria-hidden="true">${w.emoji}</div>
       <div class="work-info">
@@ -889,105 +905,106 @@ works.forEach((w, i) => {
       </div>
       <div class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>`;
-});
+        });
 
-// render picks
-const pg = document.getElementById('picksGrid');
-picks.forEach(p => {
-  pg.innerHTML += `
+        // render picks
+        const pg = document.getElementById('picksGrid');
+        picks.forEach(p => {
+            pg.innerHTML += `
     <div class="pick-item">
       <div class="pick-cover-placeholder" aria-hidden="true">${p.artist.charAt(0)}</div>
       <p class="pick-artist">${p.artist}</p>
       <p class="pick-album">${p.album}</p>
     </div>`;
-});
+        });
 
-// PLAYER
-const audio = document.getElementById('audioEl');
-const playPauseBtn = document.getElementById('playPauseBtn');
-const playIcon = document.getElementById('playIcon');
-const pauseIcon = document.getElementById('pauseIcon');
-const progressFill = document.getElementById('progressFill');
-const progressBar = document.getElementById('progressBar');
-const currentTimeEl = document.getElementById('currentTime');
-const totalTimeEl = document.getElementById('totalTime');
-const playerTitle = document.getElementById('playerTitle');
-const playerArtist = document.getElementById('playerArtist');
+        // PLAYER
+        const audio = document.getElementById('audioEl');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const progressFill = document.getElementById('progressFill');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const playerTitle = document.getElementById('playerTitle');
+        const playerArtist = document.getElementById('playerArtist');
 
-let currentIdx = -1, isPlaying = false;
+        let currentIdx = -1, isPlaying = false;
 
-function fmt(s) {
-  const m = Math.floor(s/60), sec = Math.floor(s%60);
-  return `${m}:${sec.toString().padStart(2,'0')}`;
-}
+        function fmt(s) {
+            const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+            return `${m}:${sec.toString().padStart(2, '0')}`;
+        }
 
-function setPlaying(state) {
-  isPlaying = state;
-  playIcon.style.display = state ? 'none' : '';
-  pauseIcon.style.display = state ? '' : 'none';
-}
+        function setPlaying(state) {
+            isPlaying = state;
+            playIcon.style.display = state ? 'none' : '';
+            pauseIcon.style.display = state ? '' : 'none';
+        }
 
-function loadTrack(idx) {
-  document.querySelectorAll('.work-card').forEach(c => c.classList.remove('active'));
-  currentIdx = idx;
-  const w = works[idx];
-  playerTitle.textContent = w.title;
-  playerArtist.textContent = 'DyingSeeds';
-  audio.src = w.src;
-  audio.load();
-  progressFill.style.width = '0%';
-  currentTimeEl.textContent = '0:00';
-  totalTimeEl.textContent = '0:00';
-  document.querySelectorAll('.work-card')[idx]?.classList.add('active');
-}
+        function loadTrack(idx) {
+            document.querySelectorAll('.work-card').forEach(c => c.classList.remove('active'));
+            currentIdx = idx;
+            const w = works[idx];
+            playerTitle.textContent = w.title;
+            playerArtist.textContent = 'DyingSeeds';
+            audio.src = w.src;
+            audio.load();
+            progressFill.style.width = '0%';
+            currentTimeEl.textContent = '0:00';
+            totalTimeEl.textContent = '0:00';
+            document.querySelectorAll('.work-card')[idx]?.classList.add('active');
+        }
 
-playPauseBtn.addEventListener('click', () => {
-  if (currentIdx < 0) loadTrack(0);
-  if (isPlaying) { audio.pause(); setPlaying(false); }
-  else { audio.play().catch(()=>{}); setPlaying(true); }
-});
+        playPauseBtn.addEventListener('click', () => {
+            if (currentIdx < 0) loadTrack(0);
+            if (isPlaying) { audio.pause(); setPlaying(false); }
+            else { audio.play().catch(() => { }); setPlaying(true); }
+        });
 
-document.getElementById('prevBtn').addEventListener('click', () => {
-  if (currentIdx <= 0) return;
-  loadTrack(currentIdx - 1);
-  if (isPlaying) audio.play().catch(()=>{});
-});
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentIdx <= 0) return;
+            loadTrack(currentIdx - 1);
+            if (isPlaying) audio.play().catch(() => { });
+        });
 
-document.getElementById('nextBtn').addEventListener('click', () => {
-  if (currentIdx >= works.length - 1) return;
-  loadTrack(currentIdx + 1);
-  if (isPlaying) audio.play().catch(()=>{});
-});
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentIdx >= works.length - 1) return;
+            loadTrack(currentIdx + 1);
+            if (isPlaying) audio.play().catch(() => { });
+        });
 
-audio.addEventListener('timeupdate', () => {
-  if (!audio.duration) return;
-  progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-  currentTimeEl.textContent = fmt(audio.currentTime);
-});
+        audio.addEventListener('timeupdate', () => {
+            if (!audio.duration) return;
+            progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+            currentTimeEl.textContent = fmt(audio.currentTime);
+        });
 
-audio.addEventListener('loadedmetadata', () => { totalTimeEl.textContent = fmt(audio.duration); });
+        audio.addEventListener('loadedmetadata', () => { totalTimeEl.textContent = fmt(audio.duration); });
 
-audio.addEventListener('ended', () => {
-  if (currentIdx < works.length - 1) { loadTrack(currentIdx + 1); audio.play().catch(()=>{}); }
-  else setPlaying(false);
-});
+        audio.addEventListener('ended', () => {
+            if (currentIdx < works.length - 1) { loadTrack(currentIdx + 1); audio.play().catch(() => { }); }
+            else setPlaying(false);
+        });
 
-progressBar.addEventListener('click', e => {
-  if (!audio.duration) return;
-  const r = progressBar.getBoundingClientRect();
-  audio.currentTime = (e.clientX - r.left) / r.width * audio.duration;
-});
+        progressBar.addEventListener('click', e => {
+            if (!audio.duration) return;
+            const r = progressBar.getBoundingClientRect();
+            audio.currentTime = (e.clientX - r.left) / r.width * audio.duration;
+        });
 
-document.getElementById('volumeSlider').addEventListener('input', e => { audio.volume = e.target.value; });
-audio.volume = 0.8;
+        document.getElementById('volumeSlider').addEventListener('input', e => { audio.volume = e.target.value; });
+        audio.volume = 0.8;
 
-document.querySelectorAll('.work-card').forEach(card => {
-  card.addEventListener('click', () => {
-    loadTrack(parseInt(card.dataset.idx));
-    setPlaying(true);
-    audio.play().catch(()=>{});
-  });
-});
+        document.querySelectorAll('.work-card').forEach(card => {
+            card.addEventListener('click', () => {
+                loadTrack(parseInt(card.dataset.idx));
+                setPlaying(true);
+                audio.play().catch(() => { });
+            });
+        });
     </script>
 </body>
+
 </html>
