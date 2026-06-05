@@ -464,50 +464,23 @@
             background: linear-gradient(to bottom, transparent 20%, rgba(139, 94, 82, .3) 50%, rgba(26, 22, 18, .97) 100%);
         }
 
-        /* HOT card animated border */
+        /* HOT card — pulsing glow */
         .work-card.hot {
-            border: none;
+            border-color: rgba(139, 94, 82, .35);
+            animation: hotGlow 2.4s ease-in-out infinite alternate;
         }
 
         .work-card.hot::before {
             z-index: 1;
         }
 
-        .hot-border {
-            position: absolute;
-            inset: 0;
-            z-index: 5;
-            pointer-events: none;
-            border-radius: 0;
-        }
-
-        .hot-border::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            background: conic-gradient(from var(--angle, 0deg), transparent 60%, var(--rust) 75%, var(--dirt) 85%, transparent 100%);
-            animation: borderSpin 3s linear infinite;
-            border-radius: 0;
-        }
-
-        @property --angle {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
-        }
-
-        @keyframes borderSpin {
-            to {
-                --angle: 360deg;
+        @keyframes hotGlow {
+            from {
+                box-shadow: 0 0 6px 1px rgba(139, 94, 82, .25), inset 0 0 6px 1px rgba(139, 94, 82, .08);
             }
-        }
-
-        .hot-border::after {
-            content: '';
-            position: absolute;
-            inset: 1px;
-            background: var(--ink);
-            z-index: 1;
+            to {
+                box-shadow: 0 0 18px 3px rgba(200, 184, 154, .3), inset 0 0 12px 2px rgba(139, 94, 82, .18);
+            }
         }
 
         .hot-label {
@@ -906,54 +879,50 @@
             min-height: 72px;
         }
 
-        /* Big play button on far left */
+        /* Big play button — cover art as background, icons on top */
         .big-play-btn {
             width: 54px;
             height: 54px;
             border-radius: 50%;
             border: .5px solid rgba(200, 184, 154, .35);
             background: rgba(200, 184, 154, .06);
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             flex-shrink: 0;
-            transition: border-color .2s, background .2s;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .2s;
+        }
+
+        /* dark overlay so play/pause icon stays visible on any cover */
+        .big-play-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: rgba(26, 22, 18, .45);
+            z-index: 1;
+            pointer-events: none;
         }
 
         .big-play-btn:hover {
             border-color: var(--cream);
-            background: rgba(200, 184, 154, .12);
+        }
+
+        .big-play-btn:hover::before {
+            background: rgba(26, 22, 18, .25);
         }
 
         .big-play-btn svg {
             width: 20px;
             height: 20px;
             fill: var(--cream);
-        }
-
-        /* cover thumb */
-        #playerCoverImg {
-            width: 46px;
-            height: 46px;
-            object-fit: cover;
-            filter: sepia(.3) saturate(.7) brightness(.8);
-            flex-shrink: 0;
-            display: none;
-            border-radius: 1px;
-        }
-
-        .player-cover-ph {
-            width: 46px;
-            height: 46px;
-            background: rgba(200, 184, 154, .08);
-            border: .5px solid rgba(200, 184, 154, .15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: rgba(200, 184, 154, .3);
-            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
         }
 
         /* track info */
@@ -1076,12 +1045,6 @@
             .big-play-btn svg {
                 width: 17px;
                 height: 17px;
-            }
-
-            #playerCoverImg,
-            .player-cover-ph {
-                width: 38px;
-                height: 38px;
             }
 
             .volume-wrap {
@@ -1221,8 +1184,6 @@
                     <path d="M6 19h4V5H6zm8-14v14h4V5z" />
                 </svg>
             </button>
-            <img id="playerCoverImg" alt="封面">
-            <div class="player-cover-ph" id="playerCoverPh">♪</div>
             <div class="player-info">
                 <div class="player-title" id="playerTitle">选择一首曲目</div>
                 <div class="player-artist" id="playerArtist">—</div>
@@ -1315,7 +1276,7 @@
             const coverHTML = w.cover
                 ? `<img class="work-cover" src="${w.cover}" alt="${w.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="work-cover-placeholder" style="display:none">${w.emoji}</div>`
                 : `<div class="work-cover-placeholder">${w.emoji}</div>`;
-            const hotHTML = w.hot ? `<div class="hot-border"></div><div class="hot-label">热门</div>` : '';
+            const hotHTML = w.hot ? `<div class="hot-label">热门</div>` : '';
             wg.innerHTML += `
     <div class="work-card${w.hot ? ' hot' : ''}" data-idx="${i}" data-filter="${w.filterTag}" role="button" tabindex="0" aria-label="播放 ${w.title}">
       ${hotHTML}${coverHTML}
@@ -1431,12 +1392,10 @@
         const playerTime = document.getElementById('playerTime');
         const playerTitle = document.getElementById('playerTitle');
         const playerArtist = document.getElementById('playerArtist');
-        const playerCoverImg = document.getElementById('playerCoverImg');
-        const playerCoverPh = document.getElementById('playerCoverPh');
 
         function fmt(s) { const m = Math.floor(s / 60), sec = Math.floor(s % 60); return `${m}:${sec.toString().padStart(2, '0')}`; }
         function setPlaying(v) { isPlaying = v; playIcon.style.display = v ? 'none' : ''; pauseIcon.style.display = v ? '' : 'none'; }
-        function setPlayerCover(src) { if (src) { playerCoverImg.src = src; playerCoverImg.style.display = 'block'; playerCoverPh.style.display = 'none'; playerCoverImg.onerror = () => { playerCoverImg.style.display = 'none'; playerCoverPh.style.display = 'flex'; }; } else { playerCoverImg.style.display = 'none'; playerCoverPh.style.display = 'flex'; } }
+        function setPlayerCover(src) { playPauseBtn.style.backgroundImage = src ? `url(${src})` : ''; }
 
         async function loadWork(idx) {
             document.querySelectorAll('.work-card').forEach(c => c.classList.remove('active'));
