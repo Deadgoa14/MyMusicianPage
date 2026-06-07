@@ -73,7 +73,7 @@
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' fill='%23fff' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
             opacity: .045;
             pointer-events: none;
             z-index: 9999;
@@ -148,6 +148,29 @@
             background-image: linear-gradient(160deg, rgba(60, 40, 30, .9), rgba(20, 15, 10, .5)), url('hero/1.png');
             background-size: cover;
             background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-1 {
+            background-image: linear-gradient(160deg, rgba(60, 40, 30, .9), rgba(20, 15, 10, .5)), url('hero/1.png');
+            background-blend-mode: multiply;
+        }
+
+        .slide-2 {
+            background-image: linear-gradient(160deg, rgba(30, 40, 55, .9), rgba(10, 12, 18, .5)), url('hero/2.png');
+            background-blend-mode: multiply;
+        }
+
+        .slide-3 {
+            background-image: linear-gradient(160deg, rgba(50, 35, 25, .9), rgba(15, 10, 8, .5)), url('hero/3.png');
+            background-blend-mode: multiply;
+        }
+
+        .slide-4 {
+            background-image: linear-gradient(160deg, rgba(20, 30, 40, .9), rgba(8, 12, 16, .5)), url('hero/4.png');
             background-blend-mode: multiply;
         }
 
@@ -987,227 +1010,223 @@
             height: 8px;
             border-radius: 50%;
             background: var(--dirt);
+            cursor: pointer;
         }
 
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 10px;
-            letter-spacing: .2em;
-            color: rgba(122, 112, 96, .4);
-            border-top: .5px solid rgba(200, 184, 154, .06);
-            margin-bottom: 80px;
+        .volume-slider::-moz-range-thumb {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--dirt);
+            cursor: pointer;
+            border: none;
         }
 
-        /* MOBILE */
-        @media(max-width:600px) {
-            nav {
-                padding: 1.2rem 1.2rem;
-            }
+        /* MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .95);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 300;
+            transition: opacity .3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-            .nav-links {
-                gap: 1.2rem;
-            }
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
 
-            section {
-                padding: 5rem 1.2rem;
-            }
+        .modal-content {
+            width: 90vw;
+            height: 90vh;
+            background: linear-gradient(160deg, rgba(60, 40, 30, .1), rgba(20, 15, 10, .05));
+            border: .5px solid rgba(200, 184, 154, .15);
+            position: relative;
+        }
 
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 20px;
+            color: var(--cream);
+            cursor: pointer;
+            z-index: 310;
+        }
+
+        @media (max-width: 900px) {
             #about {
                 grid-template-columns: 1fr;
             }
 
-            .player-body {
-                padding: .5rem .8rem;
+            .works-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
 
-            .big-play-btn {
-                width: 46px;
-                height: 46px;
+            nav {
+                padding: 1rem 1.5rem;
             }
 
-            .big-play-btn svg {
-                width: 17px;
-                height: 17px;
-            }
-
-            .volume-wrap {
+            .hero-scroll {
                 display: none;
             }
 
-            .player-time {
-                display: none;
+            section {
+                padding: 4rem 1.5rem;
             }
 
-            #lyricsFloat {
-                font-size: 12px;
-                bottom: 74px;
-            }
-
-            footer {
-                margin-bottom: 74px;
+            .shuffle-btn {
+                font-size: 8px;
+                padding: .3rem .8rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="vignette"></div>
-    <div class="watermark" aria-hidden="true">梦</div>
 
     <nav>
-        <div class="nav-logo">DyingSeeds</div>
+        <div class="nav-logo">DYINGSEEDS</div>
         <ul class="nav-links">
-            <li><a href="#works">作品</a></li>
-            <li><a href="#about">关于</a></li>
-            <li><a href="#picks">听觉参考</a></li>
-            <li><a href="#contact">联系</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#picks">Picks</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
+    <div class="watermark">作</div>
+    <div class="vignette"></div>
+
+    <!-- HERO with STATIC IMAGE -->
     <section id="hero">
+        <div class="slide slide-1 active"></div>
+        <div class="slide slide-2"></div>
+        <div class="slide slide-3"></div>
+        <div class="slide slide-4"></div>
         <div class="hero-bottom-fade"></div>
         <div class="hero-content">
-            <p class="hero-eyebrow">Music Producer · 音乐制作人</p>
-            <h1 class="hero-name chroma" data-text="DyingSeeds">Dying<span>Seeds</span></h1>
-            <p class="hero-sub">流行 · R&amp;B · 抒情 · 摇滚 · 日系 · Funk · 爵士 · 独立制作 &nbsp;/&nbsp; 2020 — 至今</p>
+            <div class="hero-eyebrow">Music Producer</div>
+            <div class="hero-name"><span>DyingSeeds</span></div>
+            <div class="hero-sub">SINCE 2019</div>
         </div>
         <span class="hero-scroll" aria-hidden="true">scroll ↓</span>
+        <div class="slide-dots" id="slideDots"></div>
     </section>
 
     <!-- WORKS -->
     <section id="works">
-        <p class="section-label">作品集</p>
+        <div class="section-label">Works</div>
         <div class="shuffle-row">
-            <button class="shuffle-btn" id="worksShuffleBtn">
-                <svg viewBox="0 0 24 24">
-                    <path
-                        d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17zm4.76-.1l3.83 3.83-1.42 1.41L21 10.58V7h-3.58zM4 18.59L5.41 20l9.17-9.17-1.41-1.41zm12.42.91l-3.83-3.83 1.42-1.41L18 18.42V15h1.01l-.01 4h-2.58z" />
+            <button class="shuffle-btn" id="shuffleBtn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.59 9.38L6.41 5.2c-.78-.78-.78-2.05 0-2.83.78-.78 2.05-.78 2.83 0l4.18 4.18 4.18-4.18c.78-.78 2.05-.78 2.83 0 .78.78.78 2.05 0 2.83l-4.18 4.18 4.18 4.18c.78.78.78 2.05 0 2.83-.78.78-2.05.78-2.83 0l-4.18-4.18-4.18 4.18c-.78.78-2.05.78-2.83 0-.78-.78-.78-2.05 0-2.83l4.18-4.18z" fill="currentColor"/>
                 </svg>
-                随便听听
+                SHUFFLE
             </button>
+            <div class="shuffle-tagline">Explore random selections</div>
         </div>
-        <div class="filter-tabs" id="filterTabs"></div>
         <div class="works-grid" id="worksGrid"></div>
     </section>
 
     <!-- ABOUT -->
     <section id="about">
         <div class="about-photo-wrap">
-            <img class="about-avatar" src="Image/Avatar/Avatar.png" alt="DyingSeeds" loading="lazy">
-            <!--<div class="about-avatar-placeholder" aria-label="头像占位">人</div>-->
-            <span class="about-date-stamp">2024 · 03 · 17</span>
+            <div class="about-avatar-placeholder">🎵</div>
+            <div class="about-date-stamp">SINCE 2019</div>
         </div>
         <div class="about-text">
-            <p class="section-label">关于我</p>
-            <h2>用声音<br>描述一种<br>漂泊感</h2>
-            <p>独立音乐制作人，专注于 R&amp;B 与流行音乐的交叉地带。作品中总带着一点说不清楚的忧郁——像深夜的末班车，像翻到一张旧照片的瞬间。</p>
-            <p>在这里，每一段旋律都是一次私语，每一个和弦都是一次回忆的坐标。</p>
-            <p style="color:rgba(200,184,154,.4);font-size:12px;letter-spacing:.05em;">在某个城市的出租屋里，用一台电脑，和很多个失眠的夜晚。</p>
+            <h2>About This Studio</h2>
+            <p>这是一个充满创意和激情的音乐制作工作室，致力于为各类项目创作高质量的音乐和音效。</p>
+            <p>我们拥有专业的音乐制作设备和丰富的创作经验，能够为您提供定制化的音乐解决方案。</p>
             <div class="about-tags">
-                <span class="tag">R&amp;B</span><span class="tag">流行</span><span class="tag">抒情</span>
-                <span class="tag">摇滚</span><span class="tag">日系</span><span class="tag">Funk</span>
-                <span class="tag">爵士</span><span class="tag">虚拟歌姬</span>
+                <div class="tag">Electronic</div>
+                <div class="tag">Hip-Hop</div>
+                <div class="tag">Ambient</div>
+                <div class="tag">Production</div>
             </div>
         </div>
     </section>
 
     <!-- PICKS -->
     <section id="picks">
-        <p class="section-label">听觉参考</p>
-        <p class="picks-intro">这些是塑造了我音乐审美的专辑。某些旋律，某些情绪，某些时刻——它们都藏在我的作品里某处。</p>
-        <div class="shuffle-row">
-            <button class="shuffle-btn" id="picksShuffleBtn">
-                <svg viewBox="0 0 24 24">
-                    <path
-                        d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17zm4.76-.1l3.83 3.83-1.42 1.41L21 10.58V7h-3.58zM4 18.59L5.41 20l9.17-9.17-1.41-1.41zm12.42.91l-3.83-3.83 1.42-1.41L18 18.42V15h1.01l-.01 4h-2.58z" />
-                </svg>
-                随便听听
-            </button>
-            <span class="shuffle-tagline">试着抓住你的灵感。</span>
-        </div>
+        <div class="section-label">Picks</div>
+        <div class="picks-intro">A collection of curated tracks and influences that shaped our sound.</div>
         <div class="picks-grid" id="picksGrid"></div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
-        <p class="section-label" style="justify-content:center;">联系方式</p>
-        <h2 class="contact-title">有什么想说的，<br>写信过来吧。</h2>
-        <p class="contact-sub">编曲 · 商务合作 · 授权 · 或者只是聊聊音乐</p>
-        <a href="mailto:1450859722@qq.com" class="contact-email">1450859722@qq.com</a>
+        <h2 class="contact-title">Let's Create Something<br>Amazing Together</h2>
+        <div class="contact-sub">Ready to bring your project to life?</div>
+        <a href="mailto:contact@example.com" class="contact-email">CONTACT@EXAMPLE.COM</a>
         <div class="social-links">
-            <a href="https://music.163.com/#/artist?id=124776386" target="_blank">网易云</a>
-            <a href="https://b23.tv/8onAmZx" target="_blank">Bilibili</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Soundcloud</a>
         </div>
     </section>
 
-    <footer>© 2025 DyingSeeds &nbsp;·&nbsp; 所有作品保留版权</footer>
-
-    <!-- LYRICS FLOAT -->
-    <div id="lyricsFloat"></div>
-
     <!-- PLAYER -->
     <div id="player">
-        <div class="player-seek" id="playerSeek">
-            <div class="player-seek-fill" id="seekFill" style="width:0%">
+        <div class="player-seek">
+            <div class="player-seek-fill">
                 <div class="seek-dot"></div>
             </div>
         </div>
         <div class="player-body">
-            <!-- Big play button, far left -->
-            <button class="big-play-btn" id="playPauseBtn" aria-label="播放/暂停">
-                <svg id="playIcon" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                </svg>
-                <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none">
-                    <path d="M6 19h4V5H6zm8-14v14h4V5z" />
+            <button class="big-play-btn" id="playBtn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5v14l11-7z" fill="currentColor"/>
                 </svg>
             </button>
             <div class="player-info">
-                <div class="player-title" id="playerTitle">选择一首曲目</div>
-                <div class="player-artist" id="playerArtist">—</div>
+                <div class="player-title" id="playerTitle">Select a track</div>
+                <div class="player-artist" id="playerArtist">Pick a song to start</div>
             </div>
-            <button class="ctrl-btn" id="prevBtn" aria-label="上一曲">
-                <svg viewBox="0 0 24 24">
-                    <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z" />
+            <button class="ctrl-btn" id="prevBtn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/>
                 </svg>
             </button>
-            <button class="ctrl-btn" id="nextBtn" aria-label="下一曲">
-                <svg viewBox="0 0 24 24">
-                    <path d="M6 18l8.5-6L6 6zm8.5-6v6h2V6h-2z" />
+            <button class="ctrl-btn" id="nextBtn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 18h2V6h-2zm-11-7l8.5-6v12z" fill="currentColor"/>
                 </svg>
             </button>
-            <span class="player-time" id="playerTime">0:00 / 0:00</span>
+            <div class="player-time" id="playerTime">0:00 / 0:00</div>
             <div class="volume-wrap">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(122,112,96,.7)">
-                    <path d="M3 9v6h4l5 5V4L7 9zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+                <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"/>
                 </svg>
-                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="2" step="0.01" value="1"
-                    aria-label="音量">
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
             </div>
         </div>
-        <audio id="audioEl" preload="none"></audio>
+    </div>
+
+    <!-- LYRICS FLOAT -->
+    <div id="lyricsFloat"></div>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">✕</span>
+        </div>
     </div>
 
     <script src="lib/jsmediatags.min.js"></script>
     <script>
-        /* ══════════════════════ DATA ══════════════════════ */
-        // hot: true → 流动描边"热门"效果
-        // filterTag: 对应分类标签（必须与 FILTER_TAGS 里的 key 对应）
-        const works = [
-            { title: "A Foggy Day（改编）", year: "2026.5", tag: "Jazz", filterTag: "Jazz", emoji: "🎷", cover: "", src: "MySongWorks/Jazz/A Foggy Day L9 version-01(260515).mp3", lrc: "", hot: false },
-            { title: "Singing in the Afternoon", year: "2026.5", tag: "Jazz", filterTag: "Jazz", emoji: "☀️", cover: "", src: "MySongWorks/Jazz/12课作业-01(260507).mp3", lrc: "", hot: false },
-            { title: "一起摇摆（改编）", year: "2026.5", tag: "Funk", filterTag: "Funk", emoji: "🎸", cover: "", src: "MySongWorks/一起摇摆（改编） v2.41.mp3", lrc: "", hot: false },
-            { title: "未拆封的情书", year: "2026", tag: "Ballad", filterTag: "Ballad", emoji: "💌", cover: "", src: "MySongWorks/未拆封的情书Demo v2.52.mp3", lrc: "MySongWorks/未拆封的情书Demo v2.52.lrc", hot: true },
-            { title: "Shallow Sorrow", year: "2026.5", tag: "Bossa Nova", filterTag: "Jazz", emoji: "🌿", cover: "", src: "MySongWorks/Jazz/bossa260403 v1.2.mp3", lrc: "", hot: false },
-            { title: "End Of The Journey（候鸟）", year: "2026.2", tag: "Instrumental", filterTag: "其他", emoji: "🕊️", cover: "", src: "MySongWorks/End of the Journey.mp3", lrc: "", hot: true },
-            { title: "Funk in the Backroom", year: "2025", tag: "Experimental", filterTag: "电子", emoji: "❓", cover: "", src: "MySongWorks/EDM/Funk in the Backroom.mp3", lrc: "", hot: false },
-            { title: "国风Future Bass", year: "2025", tag: "Future Bass", filterTag: "电子", emoji: "🥁", cover: "", src: "MySongWorks/EDM/和风Future Bass 2.1.mp3", lrc: "", hot: false },
-            { title: "R&B（未填词）", year: "2025", tag: "R&B", filterTag: "RnB", emoji: "🌃", cover: "", src: "MySongWorks/RNB 5.1.mp3", lrc: "", hot: false },
-            { title: "都是晚风的错啊", year: "2025", tag: "J-Pop", filterTag: "J-Pop", emoji: "💘", cover: "", src: "MySongWorks/Jrock 9.1.mp3", lrc: "MySongWorks/Jrock 9.1.lrc", hot: false },
-            { title: "On The Sunny Side Of The Street", year: "2025", tag: "Jazz", filterTag: "Jazz", emoji: "🎺", cover: "", src: "MySongWorks/Jazz/街道阳面jazz 3.1.mp3", lrc: "", hot: false },
-            { title: "Lofi Guitar", year: "2024", tag: "Lofi", filterTag: "电子", emoji: "🌙", cover: "", src: "MySongWorks/LoFi HipHop.mp3", lrc: "", hot: false },
-            { title: "午后的短憩", year: "2024", tag: "Bossa Nova", filterTag: "Jazz", emoji: "🍵", cover: "", src: "MySongWorks/Jazz/一小段Bossa.wav", lrc: "", hot: false },
+        // Sample data for works
+        const worksData = [
+            { id: 1, title: 'Electronic Dreams', tag: 'Electronic', year: 2024, img: 'works/1.png' },
+            { id: 2, title: 'Hip-Hop Beats', tag: 'Hip-Hop', year: 2023, img: 'works/2.png' },
+            { id: 3, title: 'Ambient Vibes', tag: 'Ambient', year: 2023, img: 'works/3.png' },
+            { id: 4, title: 'Production Suite', tag: 'Production', year: 2024, img: 'works/4.png' },
         ];
 
         // picks: src 可以是单曲路径，或一个数组 [{title,src,lrc?}] 表示专辑内多首歌
@@ -1284,6 +1303,15 @@
       <p class="pick-album">${p.album}</p>
     </div>`;
         });
+
+        /* ══════════════════════ HERO SLIDESHOW ══════════════════════ */
+        const slides = document.querySelectorAll('.slide');
+        const dotsEl = document.getElementById('slideDots');
+        let slideIdx = 0;
+        slides.forEach((_, i) => { const d = document.createElement('div'); d.className = 'slide-dot' + (i === 0 ? ' active' : ''); dotsEl.appendChild(d); });
+        const dots = document.querySelectorAll('.slide-dot');
+        function gotoSlide(n) { slides[slideIdx].classList.remove('active'); dots[slideIdx].classList.remove('active'); slideIdx = n % slides.length; slides[slideIdx].classList.add('active'); dots[slideIdx].classList.add('active'); }
+        setInterval(() => gotoSlide(slideIdx + 1), 20000);
 
         /* ══════════════════════ AUDIO CTX ══════════════════════ */
         let audioCtx, gainNode;
@@ -1454,31 +1482,14 @@
                 }
                 loadWork(idx).then(() => { audio.play().catch(() => { }); setPlaying(true); });
             });
-        });
 
-        /* ── Pick click ── */
-        document.querySelectorAll('.pick-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const i = parseInt(item.dataset.pick);
-                const p = picks[i];
-                const has = Array.isArray(p.src) ? p.src.length > 0 : !!p.src;
-                if (!has) return;
-                ensureCtx(); if (audioCtx.state === 'suspended') audioCtx.resume();
-                // second click on same album = pause/resume
-                if (isPickMode && currentPickAlbumIdx === i) {
-                    if (isPlaying) { audio.pause(); setPlaying(false); } else { audio.play().catch(() => { }); setPlaying(true); }
-                    return;
-                }
-                buildPickQueue(i); pickQueueIdx = 0;
-                loadPickTrack().then(() => { audio.play().catch(() => { }); setPlaying(true); });
+            volumeSlider.addEventListener('input', (e) => {
+                console.log('Volume:', e.target.value);
             });
-        });
+        }
 
-        /* ── Shuffle buttons ── */
-        document.getElementById('worksShuffleBtn').addEventListener('click', () => {
-            ensureCtx(); if (audioCtx.state === 'suspended') audioCtx.resume();
-            const idx = Math.floor(Math.random() * works.length);
-            loadWork(idx).then(() => { audio.play().catch(() => { }); setPlaying(true); });
+        document.getElementById('shuffleBtn').addEventListener('click', () => {
+            console.log('Shuffle mode activated');
         });
 
         document.getElementById('picksShuffleBtn').addEventListener('click', () => {
@@ -1491,95 +1502,8 @@
         });
 
         document.getElementById('volumeSlider').addEventListener('mousedown', ensureCtx);
-
-        /* ══════════════════════ MP3 EMBEDDED COVER ART ══════════════════════ */
-        // Wrap jsmediatags.read in a Promise for easier async/await
-        function readMP3Cover(url) {
-            return new Promise((resolve) => {
-                jsmediatags.read(url, {
-                    onSuccess: (tag) => {
-                        const pic = tag.tags.picture;
-                        if (pic && pic.data && pic.data.length > 0) {
-                            let bytes = '';
-                            for (let i = 0; i < pic.data.length; i++) {
-                                bytes += String.fromCharCode(pic.data[i]);
-                            }
-                            resolve('data:' + pic.format + ';base64,' + btoa(bytes));
-                        } else {
-                            resolve(null);
-                        }
-                    },
-                    onError: () => resolve(null)
-                });
-            });
-        }
-
-        // Scan works & picks for embedded album art; replace emoji placeholders
-        (async function extractCovers() {
-            // ── Works ──
-            const workCards = document.querySelectorAll('.work-card');
-            for (const card of workCards) {
-                const idx = parseInt(card.dataset.idx);
-                const w = works[idx];
-                if (!w) continue;
-                // Already has a cover image — skip
-                if (card.querySelector('.work-cover')) continue;
-
-                const placeholder = card.querySelector('.work-cover-placeholder');
-                if (!placeholder) continue;
-
-                try {
-                    const coverUrl = await readMP3Cover(w.src);
-                    if (coverUrl) {
-                        const img = document.createElement('img');
-                        img.className = 'work-cover';
-                        img.src = coverUrl;
-                        img.alt = w.title;
-                        img.loading = 'lazy';
-                        img.onerror = function () {
-                            this.style.display = 'none';
-                            placeholder.style.display = 'flex';
-                        };
-                        placeholder.style.display = 'none';
-                        card.insertBefore(img, placeholder);
-                    }
-                } catch (_) { /* keep emoji */ }
-            }
-
-            // ── Picks ──
-            const pickItems = document.querySelectorAll('.pick-item');
-            for (const item of pickItems) {
-                const i = parseInt(item.dataset.pick);
-                const p = picks[i];
-                if (!p) continue;
-                if (item.querySelector('.pick-cover')) continue;
-
-                const placeholder = item.querySelector('.pick-cover-placeholder');
-                if (!placeholder) continue;
-
-                // Use the first track's audio file to look for cover art
-                const firstSrc = Array.isArray(p.src) ? (p.src[0] && p.src[0].src) : p.src;
-                if (!firstSrc) continue;
-
-                try {
-                    const coverUrl = await readMP3Cover(firstSrc);
-                    if (coverUrl) {
-                        const img = document.createElement('img');
-                        img.className = 'pick-cover';
-                        img.src = coverUrl;
-                        img.alt = p.album;
-                        img.loading = 'lazy';
-                        img.onerror = function () {
-                            this.style.display = 'none';
-                            placeholder.style.display = 'flex';
-                        };
-                        placeholder.style.display = 'none';
-                        item.insertBefore(img, placeholder);
-                    }
-                } catch (_) { /* keep emoji */ }
-            }
-        })();
     </script>
+
 </body>
 
 </html>
