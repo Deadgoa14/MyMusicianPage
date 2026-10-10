@@ -29,7 +29,7 @@ window.SITE_DATA = {
       "filterTag": "Funk",
       "emoji": "🎸",
       "cover": "",
-      "src": "MySongWorks/一起摇摆（改编） v2.41.mp3",
+      "src": "MySongWorks/一起摇摆（改编） v2.5.mp3",
       "lrc": "",
       "hot": false
     },
